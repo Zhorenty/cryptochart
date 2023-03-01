@@ -2,28 +2,28 @@ import '../../model/token.dart';
 
 class Tokens {
   static const firstInitialToken = TokenModel(
-    name: 'ETH',
-    contract: '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
+    name: 'WBTC',
+    contract: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
   );
   static const secondInitialToken = TokenModel(
-    name: 'CAKE',
-    contract: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    name: 'WETH',
+    contract: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
   );
 
   static const allTokens = <TokenModel>[
     TokenModel(
-        name: 'WBNB', contract: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'),
+        name: 'WBTC', contract: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'),
     TokenModel(
-        name: 'USDT', contract: '0x55d398326f99059fF775485246999027B3197955'),
+        name: 'WETH', contract: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'),
     TokenModel(
-        name: 'BTCB', contract: '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c'),
+        name: 'DAI', contract: '0x6b175474e89094c44da98b954eedeac495271d0f'),
     TokenModel(
-        name: 'BUSD', contract: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56'),
+        name: 'USDC', contract: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'),
     TokenModel(
-        name: 'ETH', contract: '0x2170Ed0880ac9A755fd29B2688956BD959F933F8'),
+        name: 'UNI', contract: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'),
     TokenModel(
-        name: 'CAKE', contract: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82'),
+        name: 'SUSHI', contract: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'),
     TokenModel(
-        name: 'USDC', contract: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d'),
+        name: 'LINK', contract: '0x514910771af9ca656af840dff83e8264ecf986ca'),
   ];
 }

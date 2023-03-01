@@ -1,5 +1,8 @@
-import 'package:cryptochart/viewmodel/graph_provider.dart';
+import 'package:cryptochart/core/constants/colors.dart';
+import 'package:cryptochart/view/screens/pair_choice/pair_choice_screen.dart';
+import 'package:cryptochart/viewmodel/token_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,34 +13,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Uniswap Exchange Rate'),
-      ),
-      body: Center(
-        child: FutureBuilder<double?>(
-          future: getTokensTimestemp(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text('ETH/USDT: \$${snapshot.data!.toStringAsFixed(2)}');
-            } else {
-              return CircularProgressIndicator();
-            }
-          },
+    return ChangeNotifierProvider(
+      create: (context) => TokenProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
+        home: const PairChoiceScreen(),
       ),
     );
   }
