@@ -1,4 +1,3 @@
-import 'package:cryptochart/core/constants/colors.dart';
 import 'package:cryptochart/view/screens/pair_choice/pair_choice_screen.dart';
 import 'package:cryptochart/viewmodel/token_provider.dart';
 import 'package:flutter/material.dart';

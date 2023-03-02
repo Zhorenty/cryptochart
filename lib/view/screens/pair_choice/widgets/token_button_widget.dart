@@ -15,17 +15,27 @@ class TokenButtonWidget extends StatelessWidget {
     return Container(
       height: 160,
       width: 160,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.8),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          ),
+        ],
         color: ColorConstants.mainColor,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-              builder: (context) => CurrencyChoiceScreen(
-                    isFirstToken: isFirstToken,
-                  )),
-        ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => CurrencyChoiceScreen(
+                      isFirstToken: isFirstToken,
+                    )),
+          );
+        },
         child: Center(
           child: Text(
             tokenName,
