@@ -55,13 +55,13 @@
 //     if (result.hasException) {
 //       print(result.exception.toString());
 //     } else {
-//       final data = result.data!['pairHourDatas'];
-//       for (int i = 0; i < data.length; i++) {
-//         final hourStartUnix = DateTime.fromMillisecondsSinceEpoch(
-//             data[i]['hourStartUnix'] * 1000);
-//         final price = data[i]['reserve1'] / data[i]['reserve0'];
-//         chartData.add(SalesData(hourStartUnix, price));
-//       }
+      // final data = result.data!['pairHourDatas'];
+      // for (int i = 0; i < data.length; i++) {
+      //   final hourStartUnix = DateTime.fromMillisecondsSinceEpoch(
+      //       data[i]['hourStartUnix'] * 1000);
+      //   final price = data[i]['reserve1'] / data[i]['reserve0'];
+      //   chartData.add(SalesData(hourStartUnix, price));
+      // }
 //       setState(() {});
 //     }
 //   }
