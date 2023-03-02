@@ -14,6 +14,8 @@ class WatchButtonWidget extends StatelessWidget {
     final reader = context.read<TokenProvider>();
     return ElevatedButton(
       style: ButtonStyle(
+        shadowColor: const MaterialStatePropertyAll(Colors.grey),
+        elevation: const MaterialStatePropertyAll(5),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
         backgroundColor: MaterialStateProperty.all(ColorConstants.mainColor),

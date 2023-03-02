@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'dart:convert';
+import 'package:cryptochart/core/constants/querys/token_query.dart';
+import 'package:cryptochart/core/constants/uniswap_url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'dart:core';
 
 import '../core/constants/tokens.dart';
@@ -10,39 +10,36 @@ import '../model/pair.dart';
 import '../model/token.dart';
 
 class TokenProvider extends ChangeNotifier {
-  // мб фетчинг таймер добавить
   Pair currentPair = Pair(Tokens.allTokens[0], Tokens.allTokens[1]);
   // late Timer fetchingTimer;
   String dateOfReceipt = '';
-  String result = '0';
+  double? result = 0;
+  String pair = '';
   //
-  final String uniswapApiUrl =
-      'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2';
   Future<double?> getTokensPrice(
       String token1Address, String token2Address) async {
-    final response = await http.post(Uri.parse(uniswapApiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'query': '''
-          {
-            pairs(where: { token0: "$token1Address", token1: "$token2Address" }) {
-              id
-              token0Price
-              token0 {
-              id
-             name
-            }
-          }
-        }
-      '''
-        }));
+    try {
+      final response = await http.post(Uri.parse(UniswapApiConstant.url),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode({
+            'query':
+                TokenQueryConstant.buildQuery(token1Address, token2Address),
+          }));
 
-    final data = jsonDecode(response.body);
-    final price = data['data']['pairs'][0]['token0Price'];
-    result = price;
-    return double.tryParse(price);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final price = data['data']['pairs'][0]['token0Price'];
+        pair = data['data']['pairs'][0]['id'];
+        result = double.tryParse(price);
+        return double.tryParse(price);
+      } else {
+        throw Exception('token fetching error ');
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   void changeToken1(TokenModel token) {

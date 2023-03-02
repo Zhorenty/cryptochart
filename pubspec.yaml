@@ -13,13 +13,14 @@ dependencies:
   # client + etherium work
   http: ^0.13.5
   web3dart: ^2.5.1
-  # state managment + pattern matching
+  # state managment
   provider: ^6.0.5
-  flutter_bloc: ^8.1.2
-  freezed: ^2.3.2
-  freezed_annotation: ^2.2.0
+  # work w/charts
+  syncfusion_flutter_charts: ^20.4.52  
+  #other
   intl: ^0.18.0
   
+ 
 
 dev_dependencies:
   flutter_test:

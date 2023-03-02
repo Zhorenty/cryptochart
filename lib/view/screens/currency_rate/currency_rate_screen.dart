@@ -1,9 +1,9 @@
 import 'package:cryptochart/core/constants/colors.dart';
+import 'package:cryptochart/view/screens/currency_rate/widgets/chart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/constants/tokens.dart';
 import '../../../viewmodel/token_provider.dart';
 
 class CurrencyRateScreen extends StatelessWidget {
@@ -16,6 +16,7 @@ class CurrencyRateScreen extends StatelessWidget {
     final pair = context.watch<TokenProvider>().currentPair;
     var dateOfReceipt = DateFormat.Hms().format(DateTime.now());
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'Currency Rate',
@@ -36,23 +37,30 @@ class CurrencyRateScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              const SizedBox(height: 25),
               FutureBuilder(
                 future: provider.getTokensPrice(
                     pair.token1!.contract, pair.token2!.contract),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    // return Text('RESULT : ${snapshot.data!.toStringAsFixed(5)}');
                     return Text(
-                      '1 ${pair.token2!.name} = ${watcher.result.replaceRange(7, watcher.result.length, '')} ${pair.token1!.name}',
-                      style: TextStyle(fontSize: 20),
+                      '1 ${pair.token2!.name} = ${snapshot.data!.toStringAsFixed(7)}... ${pair.token1!.name}',
+                      style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Outfit',
+                          color: ColorConstants.mainColor),
                     );
                   } else {
                     return const CircularProgressIndicator();
                   }
                 },
               ),
+              PriceChart(),
+              const Spacer(),
               Center(
-                child: Text('Relevant on: ${watcher.dateOfReceipt}',
+                child: Text('Relevant on - $dateOfReceipt',
+                    //watcher.dateOfReceipt
                     style: const TextStyle(
                         color: ColorConstants.mainColor,
                         fontSize: 25,

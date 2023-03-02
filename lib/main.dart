@@ -7,6 +7,16 @@ void main() {
   runApp(const MyApp());
 }
 
+/*
+К моему удивлению, используя uniswap api, некоторые пары токенов возвращают null, вот пары тех, которые работают.
+WETH -> Все
+WBTC -> UNI
+DAI -> LINK | WBTC, UNI 
+USDC -> WBTC, DAI, UNI, SUSHI, LINK //только WETH не работает
+UNI - 0
+SUSHI - 0
+LINK - 0
+*/
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
