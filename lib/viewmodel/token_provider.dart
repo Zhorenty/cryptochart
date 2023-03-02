@@ -9,14 +9,19 @@ import '../core/constants/tokens.dart';
 import '../model/pair.dart';
 import '../model/token.dart';
 
+enum LoadState {
+  loading,
+  loaded,
+  error,
+}
+
 class TokenProvider extends ChangeNotifier {
   Pair currentPair = Pair(Tokens.allTokens[0], Tokens.allTokens[1]);
   // late Timer fetchingTimer;
   String dateOfReceipt = '';
   double? result = 0;
   String pair = '';
-  //
-  Future<double?> getTokensPrice(
+  Future<void> getTokensPrice(
       String token1Address, String token2Address) async {
     try {
       final response = await http.post(Uri.parse(UniswapApiConstant.url),
@@ -33,7 +38,6 @@ class TokenProvider extends ChangeNotifier {
         final price = data['data']['pairs'][0]['token0Price'];
         pair = data['data']['pairs'][0]['id'];
         result = double.tryParse(price);
-        return double.tryParse(price);
       } else {
         throw Exception('token fetching error ');
       }

@@ -4,12 +4,14 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class PriceChart extends StatefulWidget {
+  const PriceChart({super.key});
+
   @override
   _PriceChartState createState() => _PriceChartState();
 }
 
 class _PriceChartState extends State<PriceChart> {
-  List<PriceData> _priceData = [];
+  final List<PriceData> _priceData = [];
 
   @override
   void initState() {

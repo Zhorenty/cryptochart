@@ -44,7 +44,7 @@ class CurrencyRateScreen extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Text(
-                      '1 ${pair.token2!.name} = ${snapshot.data!.toStringAsFixed(7)}... ${pair.token1!.name}',
+                      '1 ${pair.token2!.name} = ${provider.result?.toStringAsFixed(7)}... ${pair.token1!.name}',
                       style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,

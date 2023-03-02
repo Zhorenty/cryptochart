@@ -13,12 +13,16 @@ dependencies:
   # client + etherium work
   http: ^0.13.5
   web3dart: ^2.5.1
-  # state managment
+  # state managment + codegen
   provider: ^6.0.5
+  json_serializable: ^6.6.1
+  json_annotation: ^4.8.0
   # work w/charts
   syncfusion_flutter_charts: ^20.4.52  
   #other
   intl: ^0.18.0
+  
+
   
  
 
@@ -26,12 +30,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
 
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/abi/abi.json
+  # assets:
+    # - assets/abi/abi.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   fonts:
