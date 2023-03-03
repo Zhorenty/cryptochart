@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'package:cryptochart/core/constants/querys/timestemp_query.dart';
 import 'package:cryptochart/core/constants/querys/token_query.dart';
 import 'package:cryptochart/core/constants/uniswap_url.dart';
@@ -44,7 +43,6 @@ class TokenProvider extends ChangeNotifier {
           },
         ),
       );
-      print(pair);
 
       final data = jsonDecode(response.body);
       final price = data['data']['pairs'][0]['token0Price'];
