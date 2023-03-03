@@ -10,9 +10,9 @@ void main() {
 /*
 К моему удивлению, используя uniswap api, некоторые пары токенов возвращают null, вот пары тех, которые работают.
 WETH -> Все
-WBTC -> UNI
-DAI -> LINK WBTC, UNI 
 USDC -> Все, кроме WETH
+DAI -> WBTC, LINK, UNI 
+WBTC -> UNI
 */
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
