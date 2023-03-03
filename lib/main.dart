@@ -9,8 +9,8 @@ void main() {
 
 /*
 К моему удивлению, используя uniswap api, некоторые пары токенов возвращают null, вот пары тех, которые работают.
-WETH -> Все
-USDC -> Все, кроме WETH
+WETH -> WBTC, DAI, USDC, UNI, SUSHI, LINK
+USDC -> WBTC, DAI, UNI, SUSHI, LINK
 DAI -> WBTC, LINK, UNI 
 WBTC -> UNI
 */
