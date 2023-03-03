@@ -1,3 +1,4 @@
+import 'package:cryptochart/view/screens/pair_choice/widgets/compare_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,23 +47,13 @@ class PairChoiceScreen extends StatelessWidget {
                       tokenName: pair.token1!.name,
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     top: 65,
                     left: 175,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      width: 80,
-                      height: 70,
-                      child: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 30,
-                      ),
-                    ),
+                    child: CompareWidget(),
                   ),
                   const Positioned(
-                    height: 50,
+                    height: 60,
                     width: 400,
                     left: 15,
                     bottom: 35,
