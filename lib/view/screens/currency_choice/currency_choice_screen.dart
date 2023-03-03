@@ -1,6 +1,7 @@
 import 'package:cryptochart/view/screens/currency_choice/widgets/choice_token_button_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/colors.dart';
 import '../../../core/constants/tokens.dart';
 
 class CurrencyChoiceScreen extends StatelessWidget {
@@ -31,7 +32,11 @@ class CurrencyChoiceScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, size: 27, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 27,
+            color: ColorConstants.secondaryBlackColor,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),

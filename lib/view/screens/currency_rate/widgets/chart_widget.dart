@@ -1,60 +1,59 @@
+// ignore_for_file: library_private_types_in_public_api
+import 'package:cryptochart/core/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class PriceChart extends StatefulWidget {
-  const PriceChart({super.key});
+import 'package:cryptochart/model/pair_hour_token.dart';
 
+import '../../../../viewmodel/token_provider.dart';
+
+class PriceChart extends StatefulWidget {
+  final List<PairHourTokenModel> pairsHourTokenModel;
+  const PriceChart({
+    Key? key,
+    required this.pairsHourTokenModel,
+  }) : super(key: key);
   @override
   _PriceChartState createState() => _PriceChartState();
 }
 
 class _PriceChartState extends State<PriceChart> {
-  final List<PriceData> _priceData = [];
-
   @override
   void initState() {
     super.initState();
-    // _fetchData();
-  }
-
-  List<PriceData> _parseData(String responseBody) {
-    final lines = responseBody.split('\n');
-    final format = DateFormat('yyyy-MM-dd HH:mm:ss');
-
-    return lines.map((line) {
-      final parts = line.split(',');
-      final time = format.parse(parts[0]);
-      final price = double.parse(parts[1]);
-      return PriceData(time, price);
-    }).toList();
+    Provider.of<TokenProvider>(context, listen: false).getTokensPrice();
   }
 
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-      primaryXAxis: DateTimeCategoryAxis(
-        intervalType: DateTimeIntervalType.hours,
-        interval: 1,
-        rangePadding: ChartRangePadding.additional,
-        edgeLabelPlacement: EdgeLabelPlacement.shift,
-        dateFormat: DateFormat.Hm(),
+      tooltipBehavior: TooltipBehavior(
+        enable: true,
+        format: 'point.y',
       ),
-      series: <ChartSeries<PriceData, DateTime>>[
-        LineSeries<PriceData, DateTime>(
-          dataSource: _priceData,
-          xValueMapper: (PriceData data, _) => data.time,
-          yValueMapper: (PriceData data, _) => data.price,
+      primaryXAxis: DateTimeAxis(
+        // title: AxisTitle(text: 'Time'),
+        interval: (1),
+        minimum: widget.pairsHourTokenModel.isNotEmpty
+            ? widget.pairsHourTokenModel.first.time
+            : null,
+        maximum: widget.pairsHourTokenModel.isNotEmpty
+            ? widget.pairsHourTokenModel.last.time
+            : null,
+      ),
+      primaryYAxis: NumericAxis(
+          // title: AxisTitle(text: 'Price'),
+          ),
+      series: [
+        LineSeries<PairHourTokenModel, DateTime>(
+          color: ColorConstants.primaryColor,
+          dataSource: widget.pairsHourTokenModel,
+          xValueMapper: (PairHourTokenModel sales, _) => sales.time,
+          yValueMapper: (PairHourTokenModel sales, _) => sales.price,
+          name: 'Price',
         )
       ],
     );
   }
-}
-
-class PriceData {
-  final DateTime time;
-  final double price;
-
-  PriceData(this.time, this.price);
 }

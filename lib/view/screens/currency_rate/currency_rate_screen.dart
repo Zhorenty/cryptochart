@@ -1,73 +1,100 @@
 import 'package:cryptochart/core/constants/colors.dart';
+import 'package:cryptochart/core/constants/errors.dart';
 import 'package:cryptochart/view/screens/currency_rate/widgets/chart_widget.dart';
+import 'package:cryptochart/view/screens/currency_rate/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import '../../../viewmodel/token_provider.dart';
 
-class CurrencyRateScreen extends StatelessWidget {
+class CurrencyRateScreen extends StatefulWidget {
   const CurrencyRateScreen({super.key});
 
   @override
+  State<CurrencyRateScreen> createState() => _CurrencyRateScreenState();
+}
+
+class _CurrencyRateScreenState extends State<CurrencyRateScreen> {
+  @override
+  void initState() {
+    Provider.of<TokenProvider>(context, listen: false).getTokensPrice();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TokenProvider provider = TokenProvider();
-    final watcher = context.watch<TokenProvider>();
-    final pair = context.watch<TokenProvider>().currentPair;
-    var dateOfReceipt = DateFormat.Hms().format(DateTime.now());
+    final watch = context.watch<TokenProvider>();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorConstants.secondaryWhiteColor,
       appBar: AppBar(
         title: const Text(
           'Currency Rate',
           style: TextStyle(
-            color: Colors.black,
+            color: ColorConstants.secondaryBlackColor,
             fontSize: 28,
             fontFamily: 'Outfit',
           ),
         ),
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: ColorConstants.secondaryWhiteColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, size: 27, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 27,
+            color: ColorConstants.secondaryBlackColor,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 25),
-              FutureBuilder(
-                future: provider.getTokensPrice(
-                    pair.token1!.contract, pair.token2!.contract),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                      '1 ${pair.token2!.name} = ${provider.result?.toStringAsFixed(7)}... ${pair.token1!.name}',
+        child: Consumer<TokenProvider>(
+          builder: (context, tokenProvider, _) {
+            switch (tokenProvider.loadState) {
+              case LoadState.loading:
+                return const Center(
+                    child: SpinKitSquareCircle(
+                  duration: Duration(milliseconds: 800),
+                  size: 80,
+                  color: ColorConstants.primaryColor,
+                ));
+              case LoadState.error:
+                return const MistakeWidget(
+                    message: ErrorConstants.fetchingError);
+              case LoadState.loaded:
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 25),
+                    Text(
+                      '1 ${tokenProvider.currentPair.token2!.name} = ${tokenProvider.result?.toStringAsFixed(7)} ${tokenProvider.currentPair.token1!.name}',
                       style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Outfit',
-                          color: ColorConstants.mainColor),
-                    );
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
-              ),
-              PriceChart(),
-              const Spacer(),
-              Center(
-                child: Text('Relevant on - $dateOfReceipt',
-                    //watcher.dateOfReceipt
-                    style: const TextStyle(
-                        color: ColorConstants.mainColor,
                         fontSize: 25,
-                        fontFamily: 'Outfit')),
-              ),
-            ],
-          ),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Outfit',
+                        color: ColorConstants.primaryColor,
+                      ),
+                    ),
+                    Card(
+                      child: PriceChart(
+                        pairsHourTokenModel: tokenProvider.pairsHourTokenModel,
+                      ),
+                    ),
+                    const Spacer(),
+                    Center(
+                      child: Text(
+                        'Relevant on - ${watch.dateOfReceipt}',
+                        style: const TextStyle(
+                          color: ColorConstants.primaryColor,
+                          fontSize: 25,
+                          fontFamily: 'Outfit',
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+            }
+          },
         ),
       ),
     );

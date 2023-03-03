@@ -1,5 +1,4 @@
 import 'package:cryptochart/view/screens/pair_choice/pair_choice_screen.dart';
-import 'package:cryptochart/viewmodel/graph_provider.dart';
 import 'package:cryptochart/viewmodel/token_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +13,6 @@ WETH -> Все
 WBTC -> UNI
 DAI -> LINK WBTC, UNI 
 USDC -> Все, кроме WETH
-UNI - 0
-SUSHI - 0
-LINK - 0
 */
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,7 +22,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => TokenProvider()),
-        ChangeNotifierProvider(create: (context) => GraphProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

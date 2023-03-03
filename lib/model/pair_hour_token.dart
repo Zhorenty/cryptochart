@@ -1,18 +1,20 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'pair_hour_token.g.dart';
-
-@JsonSerializable()
 class PairHourTokenModel {
+  final DateTime time;
+  final double price;
   PairHourTokenModel({
-    required this.hourStartUnix,
-    required this.firstReserve,
-    required this.secondReserve,
+    required this.time,
+    required this.price,
   });
-  int hourStartUnix;
-  double firstReserve;
-  double secondReserve;
 
-  factory PairHourTokenModel.fromJson(Map<String, dynamic> json) =>
-      _$PairHourTokenModelFromJson(json);
+  factory PairHourTokenModel.fromJson(Map<String, dynamic> json) {
+    final time = DateTime.fromMillisecondsSinceEpoch(
+      json['hourStartUnix'] * 1000,
+    );
+    final price =
+        double.parse(json['reserve0']) / double.parse(json['reserve1']);
+    return PairHourTokenModel(
+      time: time,
+      price: price,
+    );
+  }
 }

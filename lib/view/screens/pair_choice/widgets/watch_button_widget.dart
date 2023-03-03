@@ -10,22 +10,23 @@ class WatchButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pair = context.watch<TokenProvider>().currentPair;
-    final reader = context.read<TokenProvider>();
+    final tokenProvider = context.read<TokenProvider>();
     return ElevatedButton(
       style: ButtonStyle(
-        shadowColor: const MaterialStatePropertyAll(Colors.grey),
-        elevation: const MaterialStatePropertyAll(5),
+        shadowColor:
+            const MaterialStatePropertyAll(ColorConstants.secondaryBlackColor),
+        elevation: const MaterialStatePropertyAll(8),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
-        backgroundColor: MaterialStateProperty.all(ColorConstants.mainColor),
+        backgroundColor: MaterialStateProperty.all(ColorConstants.primaryColor),
       ),
       child: const Text(
         'WATCH',
-        style: TextStyle(fontFamily: 'Outfit', fontSize: 28),
+        style: TextStyle(
+            fontFamily: 'Outfit', fontSize: 32, fontWeight: FontWeight.w600),
       ),
       onPressed: () {
-        reader.getTokensPrice(pair.token1!.contract, pair.token2!.contract);
+        tokenProvider.getTokensPrice();
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => const CurrencyRateScreen()),
         );

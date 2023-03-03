@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../model/token.dart';
-// import '../../../../viewmodel/graph_provider.dart';
 import '../../../../viewmodel/token_provider.dart';
 
 class TokenTile extends StatelessWidget {
@@ -25,10 +24,10 @@ class TokenTile extends StatelessWidget {
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: ColorConstants.mainColor,
+        color: ColorConstants.primaryColor,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: ColorConstants.secondaryColor,
+            backgroundColor: ColorConstants.secondaryWhiteColor,
             radius: 16,
             child: Center(
               child: Text(tokenModel.name[0]),
@@ -37,7 +36,10 @@ class TokenTile extends StatelessWidget {
           title: Text(
             tokenModel.name,
             style: const TextStyle(
-                color: Colors.white, fontSize: 23, fontFamily: 'Outfit'),
+              color: ColorConstants.secondaryWhiteColor,
+              fontSize: 23,
+              fontFamily: 'Outfit',
+            ),
           ),
         ),
       ),

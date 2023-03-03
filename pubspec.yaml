@@ -21,6 +21,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.4.52  
   #other
   intl: ^0.18.0
+  flutter_spinkit: ^5.1.0
   
 
   
