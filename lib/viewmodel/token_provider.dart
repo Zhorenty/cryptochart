@@ -20,7 +20,7 @@ enum LoadState {
 }
 
 class TokenProvider extends ChangeNotifier {
-  Pair currentPair = Pair(Tokens.allTokens[0], Tokens.allTokens[1]);
+  Pair currentPair = Pair(Tokens.allTokens[5], Tokens.allTokens[1]);
   String dateOfReceipt = '';
   double? result = 0;
   String pair = '';
