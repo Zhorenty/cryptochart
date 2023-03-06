@@ -35,7 +35,7 @@ class _PriceChartState extends State<PriceChart> {
       primaryXAxis: DateTimeAxis(
         // title: AxisTitle(text: 'Time'),
         interval: (1),
-        intervalType: DateTimeIntervalType.hours,
+        intervalType: DateTimeIntervalType.days,
         minimum: widget.pairsHourTokenModel.isNotEmpty
             ? widget.pairsHourTokenModel.first.time
             : null,

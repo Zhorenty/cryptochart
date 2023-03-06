@@ -76,7 +76,7 @@ class TokenProvider extends ChangeNotifier {
       ),
     );
     final List<dynamic> dataJson = (jsonDecode(response.body)
-        as Map<String, dynamic>)['data']['pairHourDatas'];
+        as Map<String, dynamic>)['data']['pairDayDatas'];
     final List<PairHourTokenModel> pairsHourData =
         dataJson.map((json) => PairHourTokenModel.fromJson(json)).toList();
     return pairsHourData;
