@@ -46,9 +46,7 @@ class CurrencyChoiceScreen extends StatelessWidget {
         child: ListView.separated(
           itemBuilder: (context, index) => tiles[index],
           itemCount: tiles.length,
-          separatorBuilder: (context, _) => const SizedBox(
-            height: 10,
-          ),
+          separatorBuilder: (context, _) => const SizedBox(height: 10),
         ),
       ),
     );

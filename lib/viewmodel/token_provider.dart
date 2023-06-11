@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:cryptochart/core/constants/querys/timestemp_query.dart';
+import 'package:cryptochart/core/constants/querys/timestamp_query.dart';
 import 'package:cryptochart/core/constants/querys/token_query.dart';
 import 'package:cryptochart/core/constants/uniswap_url.dart';
 import 'package:cryptochart/model/pair_hour_token.dart';
@@ -71,7 +71,7 @@ class TokenProvider extends ChangeNotifier {
       Uri.parse(UniswapApiConstant.url),
       body: jsonEncode(
         {
-          'query': TimestempQueryConstant.buildQuery(pairAddress),
+          'query': TimestampQueryConstant.buildQuery(pairAddress),
         },
       ),
     );

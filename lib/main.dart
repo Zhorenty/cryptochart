@@ -3,9 +3,7 @@ import 'package:cryptochart/viewmodel/token_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 /*
 К моему удивлению, используя uniswap api, некоторые пары токенов возвращают null, вот пары тех, которые работают.
@@ -23,13 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => TokenProvider()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const PairChoiceScreen(),
-      ),
+      child: const MaterialApp(home: PairChoiceScreen()),
     );
   }
 }

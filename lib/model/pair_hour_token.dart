@@ -1,10 +1,11 @@
 class PairHourTokenModel {
-  final DateTime time;
-  final double price;
   PairHourTokenModel({
     required this.time,
     required this.price,
   });
+
+  final DateTime time;
+  final double price;
 
   factory PairHourTokenModel.fromJson(Map<String, dynamic> json) {
     final time = DateTime.fromMillisecondsSinceEpoch(
