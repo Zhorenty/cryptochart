@@ -1,10 +1,11 @@
-import 'package:cryptochart/core/constants/colors.dart';
-import 'package:cryptochart/view/screens/currency_rate/currency_rate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../viewmodel/token_provider.dart';
+import '/core/constants/colors.dart';
+import '/view/screens/currency_rate/currency_rate_screen.dart';
+import '/viewmodel/token_provider.dart';
 
+/// TODO: docs
 class WatchButtonWidget extends StatelessWidget {
   const WatchButtonWidget({super.key});
 
@@ -13,12 +14,11 @@ class WatchButtonWidget extends StatelessWidget {
     final tokenProvider = context.read<TokenProvider>();
     return ElevatedButton(
       style: ButtonStyle(
-        shadowColor:
-            const MaterialStatePropertyAll(ColorConstants.secondaryBlackColor),
+        shadowColor: const MaterialStatePropertyAll(ColorConstants.background),
         elevation: const MaterialStatePropertyAll(8),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
-        backgroundColor: MaterialStateProperty.all(ColorConstants.primaryColor),
+        backgroundColor: MaterialStateProperty.all(ColorConstants.primary),
       ),
       child: const Text(
         'WATCH',

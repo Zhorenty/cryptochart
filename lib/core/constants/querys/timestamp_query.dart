@@ -1,3 +1,4 @@
+/// TODO: docs
 class TimestampQueryConstant {
   static String buildQuery(String pairAddress) {
     int timestampMinus12Days =

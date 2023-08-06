@@ -1,21 +1,23 @@
-// ignore_for_file: library_private_types_in_public_api
-import 'package:cryptochart/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'package:cryptochart/model/pair_hour_token.dart';
+import '/viewmodel/token_provider.dart';
+import '/core/constants/colors.dart';
+import '/model/pair_hour_token.dart';
 
-import '../../../../viewmodel/token_provider.dart';
-
+/// TODO: docs
 class PriceChart extends StatefulWidget {
-  final List<PairHourTokenModel> pairsHourTokenModel;
   const PriceChart({
-    Key? key,
+    super.key,
     required this.pairsHourTokenModel,
-  }) : super(key: key);
+  });
+
+  /// TODO: docs
+  final List<PairHourTokenModel> pairsHourTokenModel;
+
   @override
-  _PriceChartState createState() => _PriceChartState();
+  State<PriceChart> createState() => _PriceChartState();
 }
 
 class _PriceChartState extends State<PriceChart> {
@@ -33,7 +35,6 @@ class _PriceChartState extends State<PriceChart> {
         format: 'point.y',
       ),
       primaryXAxis: DateTimeAxis(
-        // title: AxisTitle(text: 'Time'),
         interval: (1),
         intervalType: DateTimeIntervalType.days,
         minimum: widget.pairsHourTokenModel.isNotEmpty
@@ -43,12 +44,10 @@ class _PriceChartState extends State<PriceChart> {
             ? widget.pairsHourTokenModel.last.time
             : null,
       ),
-      primaryYAxis: NumericAxis(
-          // title: AxisTitle(text: 'Price'),
-          ),
+      primaryYAxis: NumericAxis(),
       series: [
         LineSeries<PairHourTokenModel, DateTime>(
-          color: ColorConstants.primaryColor,
+          color: ColorConstants.primary,
           dataSource: widget.pairsHourTokenModel,
           xValueMapper: (PairHourTokenModel sales, _) => sales.time,
           yValueMapper: (PairHourTokenModel sales, _) => sales.price,

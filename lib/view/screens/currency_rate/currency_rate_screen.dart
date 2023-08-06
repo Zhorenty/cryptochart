@@ -1,13 +1,14 @@
-import 'package:cryptochart/core/constants/colors.dart';
-import 'package:cryptochart/core/constants/errors.dart';
-import 'package:cryptochart/view/screens/currency_rate/widgets/chart_widget.dart';
-import 'package:cryptochart/view/screens/currency_rate/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-import '../../../viewmodel/token_provider.dart';
+import '/core/constants/colors.dart';
+import '/core/constants/errors.dart';
+import '/viewmodel/token_provider.dart';
+import 'widgets/chart_widget.dart';
+import 'widgets/error_widget.dart';
 
+/// TODO: docs
 class CurrencyRateScreen extends StatefulWidget {
   const CurrencyRateScreen({super.key});
 
@@ -25,24 +26,25 @@ class _CurrencyRateScreenState extends State<CurrencyRateScreen> {
   @override
   Widget build(BuildContext context) {
     final watch = context.watch<TokenProvider>();
+
     return Scaffold(
-      backgroundColor: ColorConstants.secondaryWhiteColor,
+      backgroundColor: ColorConstants.secondary,
       appBar: AppBar(
         title: const Text(
           'Currency Rate',
           style: TextStyle(
-            color: ColorConstants.secondaryBlackColor,
+            color: ColorConstants.background,
             fontSize: 28,
             fontFamily: 'Outfit',
           ),
         ),
         elevation: 0,
-        backgroundColor: ColorConstants.secondaryWhiteColor,
+        backgroundColor: ColorConstants.secondary,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 27,
-            color: ColorConstants.secondaryBlackColor,
+            color: ColorConstants.background,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -56,7 +58,7 @@ class _CurrencyRateScreenState extends State<CurrencyRateScreen> {
                     child: SpinKitSquareCircle(
                   duration: Duration(milliseconds: 800),
                   size: 80,
-                  color: ColorConstants.primaryColor,
+                  color: ColorConstants.primary,
                 ));
               case LoadState.error:
                 return const MistakeWidget(
@@ -67,12 +69,14 @@ class _CurrencyRateScreenState extends State<CurrencyRateScreen> {
                   children: [
                     const SizedBox(height: 25),
                     Text(
-                      '1 ${tokenProvider.currentPair.token2!.name} = ${tokenProvider.result?.toStringAsFixed(7)} ${tokenProvider.currentPair.token1!.name}',
+                      '1 ${tokenProvider.currentPair.token2!.name} ='
+                      ' ${tokenProvider.result?.toStringAsFixed(7)} '
+                      '${tokenProvider.currentPair.token1!.name}',
                       style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Outfit',
-                        color: ColorConstants.primaryColor,
+                        color: ColorConstants.primary,
                       ),
                     ),
                     Card(
@@ -85,7 +89,7 @@ class _CurrencyRateScreenState extends State<CurrencyRateScreen> {
                       child: Text(
                         'Relevant on - ${watch.dateOfReceipt}',
                         style: const TextStyle(
-                          color: ColorConstants.primaryColor,
+                          color: ColorConstants.primary,
                           fontSize: 25,
                           fontFamily: 'Outfit',
                         ),

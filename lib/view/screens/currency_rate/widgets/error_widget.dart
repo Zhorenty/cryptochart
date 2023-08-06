@@ -1,11 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cryptochart/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+/// TODO: docs
 class MistakeWidget extends StatelessWidget {
-  final String message;
+  const MistakeWidget({super.key, this.message});
 
-  const MistakeWidget({Key? key, required this.message}) : super(key: key);
+  /// TODO: docs
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MistakeWidget extends StatelessWidget {
       child: Container(
         width: 400,
         decoration: BoxDecoration(
-          color: ColorConstants.primaryColor,
+          color: ColorConstants.primary,
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
@@ -30,18 +31,19 @@ class MistakeWidget extends StatelessWidget {
           children: [
             const Icon(
               Icons.error_outline,
-              color: ColorConstants.secondaryWhiteColor,
+              color: ColorConstants.secondary,
               size: 35,
             ),
             const SizedBox(width: 18),
-            Text(
-              message,
-              style: const TextStyle(
-                color: ColorConstants.secondaryWhiteColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            if (message != null)
+              Text(
+                message!,
+                style: const TextStyle(
+                  color: ColorConstants.secondary,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
           ],
         ),
       ),

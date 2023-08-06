@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'package:cryptochart/core/constants/colors.dart';
-import '../../currency_choice/currency_choice_screen.dart';
+import '/core/constants/colors.dart';
+import '/view/screens/currency_choice/currency_choice_screen.dart';
 
+/// TODO: docs
 class TokenButtonWidget extends StatelessWidget {
-  final bool isFirstToken;
-  final String tokenName;
-
   const TokenButtonWidget({
-    Key? key,
-    required this.isFirstToken,
+    super.key,
+    this.isFirstToken = false,
     required this.tokenName,
-  }) : super(key: key);
+  });
+
+  /// TODO: docs
+  final bool isFirstToken;
+
+  /// TODO: docs
+  final String tokenName;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +35,13 @@ class TokenButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: ColorConstants.secondaryBlackColor.withOpacity(0.5),
+              color: ColorConstants.background.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
               offset: const Offset(0, 3),
             ),
           ],
-          color: ColorConstants.primaryColor,
+          color: ColorConstants.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
@@ -46,7 +50,7 @@ class TokenButtonWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.w600,
-              color: ColorConstants.secondaryWhiteColor,
+              color: ColorConstants.secondary,
               fontFamily: 'Outfit',
             ),
           ),

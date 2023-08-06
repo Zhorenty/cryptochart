@@ -1,13 +1,15 @@
-import 'package:cryptochart/view/screens/pair_choice/widgets/compare_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../viewmodel/token_provider.dart';
+import '/viewmodel/token_provider.dart';
+import 'widgets/compare_widget.dart';
 import 'widgets/token_button_widget.dart';
 import 'widgets/watch_button_widget.dart';
 
+/// TODO: docs
 class PairChoiceScreen extends StatelessWidget {
   const PairChoiceScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final pair = context.watch<TokenProvider>().currentPair;

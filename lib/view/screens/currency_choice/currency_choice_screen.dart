@@ -1,15 +1,15 @@
-import 'package:cryptochart/view/screens/currency_choice/widgets/choice_token_button_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/colors.dart';
-import '../../../core/constants/tokens.dart';
+import '/core/constants/colors.dart';
+import '/core/constants/tokens.dart';
+import 'widgets/choice_token_button_widget.dart';
 
+/// TODO: docs
 class CurrencyChoiceScreen extends StatelessWidget {
+  const CurrencyChoiceScreen({super.key, this.isFirstToken = false});
+
+  /// TODO: docs
   final bool isFirstToken;
-  const CurrencyChoiceScreen({
-    Key? key,
-    required this.isFirstToken,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class CurrencyChoiceScreen extends StatelessWidget {
         isFirstToken: isFirstToken,
       );
     }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -35,7 +36,7 @@ class CurrencyChoiceScreen extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 27,
-            color: ColorConstants.secondaryBlackColor,
+            color: ColorConstants.background,
           ),
           onPressed: () => Navigator.pop(context),
         ),

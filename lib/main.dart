@@ -3,6 +3,7 @@ import 'package:cryptochart/viewmodel/token_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// TODO: docs
 void main() => runApp(const MyApp());
 
 /*
@@ -12,6 +13,8 @@ USDC -> WBTC, DAI, UNI, SUSHI, LINK
 DAI -> WBTC, LINK, UNI 
 WBTC -> UNI
 */
+
+/// TODO: docs
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
