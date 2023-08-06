@@ -1,15 +1,12 @@
 /// TODO: docs
 class PairHourTokenModel {
-  PairHourTokenModel({
-    required this.time,
-    required this.price,
-  });
+  PairHourTokenModel({this.time, this.price});
 
   /// TODO: docs
-  final DateTime time;
+  final DateTime? time;
 
   /// TODO: docs
-  final double price;
+  final double? price;
 
   /// TODO: docs
   factory PairHourTokenModel.fromJson(Map<String, dynamic> json) {
